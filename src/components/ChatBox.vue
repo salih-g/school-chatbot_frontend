@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="ChatItem ChatItem--expert">
+      <div class="ChatItem ChatItem--user">
         <div class="ChatItem-meta">
           <div class="ChatItem-avatar">
             <img
@@ -32,14 +32,11 @@
           <div class="ChatItem-timeStamp"><strong>Me</strong> • Today 05:49</div>
         </div>
       </div>
-
-      <div class="ChatInput is-hidey">
-        <div
-          class="ChatInput-input"
-          contenteditable="true"
-          placeholder="Type your message here..."
-        ></div>
-      </div>
+      <form class="ChatInput is-hidey">
+        <label for="message">
+          <input type="text" name="message" class="ChatInput-input" placeholder="Buraya yaz..." />
+        </label>
+      </form>
     </div>
   </div>
 </template>
@@ -51,10 +48,9 @@ export default {};
 strong {
   font-weight: bold;
 }
-
 .ChatWindow {
   width: 48rem;
-  height: 75vh;
+  height: 90vh;
   padding: 2.5rem;
   padding-bottom: 6.5rem;
   overflow: hidden;
@@ -71,7 +67,7 @@ strong {
   width: 100%;
   margin-bottom: 2rem;
 }
-.ChatItem--expert {
+.ChatItem--user {
   flex-direction: row-reverse;
 }
 .ChatItem-meta {
@@ -82,7 +78,7 @@ strong {
   margin-bottom: 0.5rem;
   width: 2.5rem;
 }
-.ChatItem--expert .ChatItem-meta {
+.ChatItem--user .ChatItem-meta {
   margin-right: 0;
   margin-left: 1rem;
 }
@@ -95,7 +91,7 @@ strong {
   width: 2.5rem;
   height: 2.5rem;
 }
-.ChatItem--expert .ChatItem-avatar {
+.ChatItem--user .ChatItem-avatar {
   margin-right: 0;
 }
 .ChatItem-avatarImage {
@@ -117,7 +113,7 @@ strong {
   font-size: 0.875rem;
   color: #666;
 }
-.ChatItem--expert .ChatItem-timeStamp {
+.ChatItem--user .ChatItem-timeStamp {
   margin-left: auto;
 }
 .ChatItem-chatText {
@@ -142,7 +138,7 @@ strong {
   transform: scaleX(0.8) skew(45deg);
   background: #007fef;
 }
-.ChatItem--expert .ChatItem-chatText:first-child::before {
+.ChatItem--user .ChatItem-chatText:first-child::before {
   right: -0.4rem;
   left: auto;
   transform: skew(-40deg);
@@ -150,7 +146,7 @@ strong {
   background: #fff;
   box-shadow: 4px 0 4px -1px rgba(0, 0, 0, 0.1);
 }
-.ChatItem--expert .ChatItem-chatText {
+.ChatItem--user .ChatItem-chatText {
   margin-left: auto;
   border: 1px solid #dbdbdb;
   background: white;
