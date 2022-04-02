@@ -32,10 +32,17 @@
           <div class="ChatItem-timeStamp"><strong>Me</strong> • Today 05:49</div>
         </div>
       </div>
-      <form class="ChatInput is-hidey" @submit.prevent="">
+      <form class="ChatInput is-hidey" @submit.prevent="sendMessage">
         <label for="message">
-          <input type="text" name="message" class="ChatInput-input" placeholder="Buraya yaz..." />
+          <input
+            type="text"
+            name="message"
+            class="ChatInput-input"
+            placeholder="Buraya yaz..."
+            v-model="message"
+          />
         </label>
+        <button type="submit">Helüüü</button>
       </form>
     </div>
   </div>
@@ -44,10 +51,20 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      message: '',
+      messages: [],
+    };
   },
+
   sockets: {},
-  methods: {},
+  methods: {
+    sendMessage() {
+      console.log('gitti');
+      this.$socket.emit('new_message', { name: this.name, message: this.message });
+      this.message = '';
+    },
+  },
 };
 </script>
 
