@@ -32,7 +32,7 @@
           <div class="ChatItem-timeStamp"><strong>Me</strong> • Today 05:49</div>
         </div>
       </div>
-      <form class="ChatInput is-hidey">
+      <form class="ChatInput is-hidey" @submit.prevent="">
         <label for="message">
           <input type="text" name="message" class="ChatInput-input" placeholder="Buraya yaz..." />
         </label>
@@ -42,8 +42,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  sockets: {},
+  methods: {},
+};
 </script>
+
 <style scoped>
 strong {
   font-weight: bold;

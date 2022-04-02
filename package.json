@@ -1,6 +1,8 @@
 {
   "name": "chatbot-frontend",
   "version": "0.1.0",
+  "author": "Salih Gumus <sudanmerinosu@gmail.com>",
+  "repository": "https://github.com/salih-g/school-chatbot_frontend",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,7 +12,8 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "vue": "^3.2.13",
+    "vue-socket.io": "^3.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
