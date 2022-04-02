@@ -1,37 +1,42 @@
 <template>
   <div>
     <div class="ChatWindow">
-      <div class="ChatItem ChatItem--bot">
-        <div class="ChatItem-meta">
-          <div class="ChatItem-avatar">
-            <img
-              class="ChatItem-avatarImage"
-              src="https://image.ibb.co/eTiXWa/avatarrobot.png"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="ChatItem-chatContent">
-          <div class="ChatItem-chatText">sound isnt working on my phone anymore</div>
-          <div class="ChatItem-timeStamp"><strong>Chat Bot</strong> • Today 05:49</div>
-        </div>
-      </div>
+      <!-- bot -->
+      <div v-for="(message, index) in messages" :key="index">
+        <div
+          :class="{
+            'ChatItem ChatItem--user': message.type === 'u',
+            'ChatItem ChatItem--bot': message.type === 'b',
+          }"
+        >
+          <div class="ChatItem-meta">
+            <div class="ChatItem-avatar">
+              <img
+                class="ChatItem-avatarImage"
+                src="https://image.ibb.co/eTiXWa/avatarrobot.png"
+                v-if="message.type === 'b'"
+                alt=""
+              />
 
-      <div class="ChatItem ChatItem--user">
-        <div class="ChatItem-meta">
-          <div class="ChatItem-avatar">
-            <img
-              class="ChatItem-avatarImage"
-              src="https://avatars.dicebear.com/api/avataaars/omer.svg"
-              alt=""
-            />
+              <img
+                class="ChatItem-avatarImage"
+                src="https://avatars.dicebear.com/api/avataaars/omer.svg"
+                v-if="message.type === 'u'"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="ChatItem-chatContent">
+            <div class="ChatItem-chatText">{{ message.text }}</div>
+            <div class="ChatItem-timeStamp" v-if="message.type === 'b'">
+              <strong> Asistan</strong>
+            </div>
+            <div class="ChatItem-timeStamp" v-if="message.type === 'u'"><strong> Ben</strong></div>
           </div>
         </div>
-        <div class="ChatItem-chatContent">
-          <div class="ChatItem-chatText">hi there!</div>
-          <div class="ChatItem-timeStamp"><strong>Me</strong> • Today 05:49</div>
-        </div>
       </div>
+      <!-- bot-end -->
+      <!-- input -->
       <form class="ChatInput is-hidey" @submit.prevent="sendMessage">
         <label for="message">
           <input
@@ -42,8 +47,8 @@
             v-model="message"
           />
         </label>
-        <button type="submit">Helüüü</button>
       </form>
+      <!-- input-end -->
     </div>
   </div>
 </template>
@@ -57,11 +62,14 @@ export default {
     };
   },
 
-  sockets: {},
+  sockets: {
+    messages(data) {
+      this.messages = data;
+    },
+  },
   methods: {
     sendMessage() {
-      console.log('gitti');
-      this.$socket.emit('new_message', { name: this.name, message: this.message });
+      this.$socket.emit('new_message', { text: this.message, type: 'u' });
       this.message = '';
     },
   },
