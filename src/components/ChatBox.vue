@@ -27,7 +27,8 @@
             </div>
           </div>
           <div class="ChatItem-chatContent">
-            <div class="ChatItem-chatText">{{ message.text }}</div>
+            <div class="ChatItem-chatText" v-if="message.type === 'u'">{{ message.text }}</div>
+            <div class="ChatItem-chatText" v-if="message.type === 'b'" v-html="message.text"></div>
             <div class="ChatItem-timeStamp" v-if="message.type === 'b'">
               <strong> Asistan</strong>
             </div>
